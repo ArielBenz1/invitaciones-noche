@@ -1,0 +1,511 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  background: linear-gradient(to bottom, #ffffff 15%,#fff2ec 45%, hsl(11, 68%, 89%) 100%);
+}
+
+
+#root {
+  max-width: 480px;
+  margin: auto;
+  background: transparent;
+  min-height: 100vh;
+  box-shadow: 0 0 40px rgba(0,0,0,0.08);
+}
+
+
+/* HERO */
+
+.hero {
+  min-height: 100vh;
+  padding: 80px 20px;
+  text-align: center;
+
+  background-image: url("/flores.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.45);
+}
+
+
+
+.hero h1 {
+  font-family: "Allura", cursive;
+  font-size: 70px;
+  font-weight: 400;
+  color: #4a2c2a;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+/* linea arriba del nombre */
+
+.hero h1::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 1px;
+  background: rgba(74,44,42,.4);
+}
+
+
+.hero p {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #3d2b2b;
+  position: relative;
+  z-index: 2;
+
+  display: inline-block;
+  padding: 0 40px;
+}
+
+/* lineas laterales fecha */
+
+.hero p::before,
+.hero p::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  background: rgba(74,44,42,.4);
+}
+
+.hero p::before {
+  left: 0;
+}
+
+.hero p::after {
+  right: 0;
+}
+
+
+
+.hero span {
+  display: block;
+  margin-top: 10px;
+  color: #7a4f3d;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* COUNTDOWN */
+
+.countdown {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.countdown div {
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  min-width: 60px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.05);
+}
+
+.countdown strong {
+  display: block;
+  font-size: 22px;
+}
+
+.countdown small {
+  font-size: 12px;
+}
+
+/* SECTIONS */
+
+.section {
+  padding: 60px 20px;
+  text-align: center;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+  margin-top: -10px;
+}
+
+.section h2 {
+  font-family: "Allura", cursive;
+  font-size: 34px;
+  color: #6b4433;
+}
+
+.section p {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0;
+  color: #3d2b2b;
+  margin-top: 10px;
+}
+
+.section svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+
+
+/* GALLERY */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 40px;
+  
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* CONFIRM BUTTON */
+
+.confirm {
+  display: inline-block;
+  background: #d4a373;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  margin-top: 20px;
+  
+}
+
+/* MUSIC */
+
+.music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #d4a373;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
+  z-index: 1000;
+}
+
+/* PETALS */
+
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.petals span {
+  position: absolute;
+  top: -20px;
+  width: 16px;
+  height: 16px;
+  background: #d9a5b3;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.slider {
+  position: relative;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f7ebe5;
+  border-radius: 24px;
+}
+
+/* Flechas */
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,.7);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 26px;
+  color: #b08968;
+  z-index: 5;
+}
+
+.left { left: 5px; }
+.right { right: 5px; }
+
+/* Dots */
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d8c2b8;
+}
+
+.dot.active {
+  background: #b08968;
+}
+
+
+/* Mobile fino */
+
+@media(max-width:480px){
+  .slides{
+    height:260px;
+  }
+}
+
+/* Mobile fino */
+
+@media (max-width: 480px) {
+  .slide img {
+    height: 260px;
+  }
+}
+
+
+/* Responsive fino */
+
+@media (max-width: 480px) {
+  .slides {
+    height: 260px;
+  }
+
+  .hero h1 {
+    font-size: 58px;
+  }
+}
+
+.maps-btn {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 6px 14px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #000;
+  transition: 0.3s;
+}
+
+.maps-btn:hover {
+  background: #000;
+  color: white;
+}
+
+.verse {
+  margin: 10px auto 70px;
+  padding: 0 20px;
+  max-width: 360px;
+  text-align: center;
+}
+
+.verse-text {
+  display: block;
+  text-align: center;
+  font-size: 23px;
+  line-height: 1.6;
+  color: #4a2c2a;
+  font-style: italic;
+}
+
+.verse-ref {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: #7a4f3d;
+  text-transform: uppercase;
+}
+/* SECCIÓN FIESTA */
+
+.fiesta {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.fiesta h2 {
+  font-family: "Allura", cursive;
+  font-size: 34px;
+  color: #6b4433;
+  margin-bottom: 13px;
+  margin-top: 0;
+}
+
+.fiesta-sub {
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  color: #8b6a5a;
+  margin-bottom: 15px;
+}
+
+.fiesta h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #a07c6c;
+  text-transform: uppercase;
+}
+.disco-icon {
+  width:100px;
+  opacity:0.6;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(32%)
+    sepia(30%)
+    saturate(400%)
+    hue-rotate(330deg);
+}
+.fiesta-separador {
+  display:flex;
+  justify-content:center;
+  margin-bottom: 5px;
+}
+
+.separador-img {
+  width: 220px;          
+  opacity: .8;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(52%)
+    sepia(30%)
+    saturate(400%)
+    hue-rotate(330deg);
+}
+/* DRESS CODE */
+
+.dresscode {
+  text-align: center;
+  padding: 60px 20px;
+  padding-bottom: 25px;
+}
+
+.dresscode h2 {
+  font-family: "Allura", cursive;
+  font-size: 36px;
+  color: #7a4f3d;
+  margin-bottom: 20px;
+}
+
+.dress-card {
+  background: #ffeae7;
+  border-radius: 30px;
+  padding: 40px 30px;
+  box-shadow: 0 18px 25px rgba(0,0,0,.08);
+  margin-bottom: 20px;
+  border: 1px solid rgba(186, 174, 167, 0.25);
+}
+
+.dress-card img {
+  width: 100px;
+  opacity: .3;
+}
+
+.dress-main {
+  font-size: 18px;
+  color: #4a2c2a;
+  margin-bottom: 20px;
+}
+
+.dress-note {
+  font-size: 16px;
+  color: #7a4f3d;
+}
+.camara-icon {
+  width: 120px;          
+  opacity: .8;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(52%)
+    sepia(30%)
+    saturate(400%)
+    hue-rotate(330deg);
+}
