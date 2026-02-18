@@ -191,7 +191,7 @@ const prev = () =>
   Cómo llegar
 </a>
 
-  <p><IconClock />22:00 hs</p>
+  <p><IconClock />22:00 hs a 05:00 hs</p>
 </section>
 
 <section className="section">
